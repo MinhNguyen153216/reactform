@@ -19,6 +19,12 @@ const initialState = {
     phone: "",
     email: "",
   },
+  errors: {
+    id: "",
+    name: "",
+    phone: "",
+    email: "",
+  },
 };
 
 export default (state = initialState, action) => {
