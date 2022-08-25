@@ -10,6 +10,11 @@ class Reacform extends Component {
     console.log(e);
   };
 
+  handleChange = (e) => {
+    console.log(e.target.id);
+    console.log(e.target.value);
+  };
+
   render() {
     return (
       <div className="container">
@@ -17,20 +22,44 @@ class Reacform extends Component {
           <div className="row">
             <div className="col-6">
               <p className="m-0">Mã SV</p>
-              <input className="form-control" type="text" id="id" />
-              <span className="text-danger">lỗi</span>
+              <input
+                className="form-control"
+                type="text"
+                id="id"
+                value={this.props.sinhVien.id}
+                onChange={this.handleChange}
+              />
+              <span className="text-danger">{this.props.errors.id}</span>
               <p className="m-0">Họ tên</p>
-              <input className="form-control" type="text" id="name" />
-              <span className="text-danger">lỗi</span>
+              <input
+                className="form-control"
+                type="text"
+                id="name"
+                value={this.props.sinhVien.name}
+                onChange={this.handleChange}
+              />
+              <span className="text-danger">{this.props.errors.id}</span>
             </div>
 
             <div className="col-6">
               <p className="m-0">Số điện thoại</p>
-              <input className="form-control" type="text" id="phone" />
-              <span className="text-danger">lỗi</span>
+              <input
+                className="form-control"
+                type="text"
+                id="phone"
+                value={this.props.sinhVien.phone}
+                onChange={this.handleChange}
+              />
+              <span className="text-danger">{this.props.errors.id}</span>
               <p className="m-0">Email</p>
-              <input className="form-control" type="text" id="email" />
-              <span className="text-danger">lỗi</span>
+              <input
+                className="form-control"
+                type="text"
+                id="email"
+                value={this.props.sinhVien.email}
+                onChange={this.handleChange}
+              />
+              <span className="text-danger">{this.props.errors.id}</span>
             </div>
           </div>
 
