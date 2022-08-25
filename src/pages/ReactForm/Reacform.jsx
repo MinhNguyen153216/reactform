@@ -11,8 +11,14 @@ class Reacform extends Component {
   };
 
   handleChange = (e) => {
-    console.log(e.target.id);
-    console.log(e.target.value);
+    const action = {
+      type: "CHANGE_INPUT",
+      payload: {
+        id: e.target.id,
+        value: e.target.value,
+      },
+    };
+    this.props.dispatch(action);
   };
 
   render() {

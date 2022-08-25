@@ -31,5 +31,13 @@ export default (state = initialState, action) => {
   switch (action.type) {
     default:
       return state;
+    case "CHANGE_INPUT": {
+      let { id, value } = action.payload;
+
+      let sinhVienUpdate = { ...state.sinhVien };
+      sinhVienUpdate[id] = value;
+      
+      return { ...state, sinhVien: sinhVienUpdate };
+    }
   }
 };
