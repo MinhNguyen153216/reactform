@@ -20,7 +20,7 @@ class ReactArrSV extends Component {
   };
 
   render() {
-    let { arrSinhVien } = this.props;
+    let { arrSinhVienSearch } = this.props;
     return (
       <div>
         <table className="table">
@@ -33,7 +33,7 @@ class ReactArrSV extends Component {
               <th></th>
             </tr>
           </thead>
-          <tbody>{this.renderArrSV(arrSinhVien)}</tbody>
+          <tbody>{this.renderArrSV(arrSinhVienSearch)}</tbody>
         </table>
       </div>
     );
@@ -41,7 +41,8 @@ class ReactArrSV extends Component {
 }
 
 const mapStateToProps = (state) => ({
-  arrSinhVien: state.formReducer.arrSinhVien,
+  arrSinhVienSearch: state.formReducer.arrSinhVienSearch,
+  searchValue: state.formReducer.searchValue,
 });
 
 export default connect(mapStateToProps)(ReactArrSV);

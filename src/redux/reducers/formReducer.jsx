@@ -25,6 +25,15 @@ const initialState = {
     phone: "",
     email: "",
   },
+  arrSinhVienSearch: [
+    {
+      id: "2",
+      name: "NguyenVanB",
+      phone: "0123456780",
+      email: "nguyenvanb@gmail.com",
+    },
+  ],
+  searchValue: "",
 };
 
 export default (state = initialState, action) => {
@@ -36,8 +45,38 @@ export default (state = initialState, action) => {
 
       let sinhVienUpdate = { ...state.sinhVien };
       sinhVienUpdate[id] = value;
-      
+
       return { ...state, sinhVien: sinhVienUpdate };
+    }
+    case "ADD_SINHVIEN": {
+      let { sinhVien } = action.payload;
+
+      let arrSinhVienUpdate = [...state.arrSinhVien];
+      arrSinhVienUpdate.push(sinhVien);
+
+      //if-else to add to the arrSinhVienSearch or not
+      //if new sinhVien is match with searchValue
+      let searchValue = state.searchValue;
+      if (
+        sinhVien.name.toLowerCase().include(searchValue.toLowerCase()) ||
+        searchValue === ""
+      ) {
+        let arrSinhVienSearchNew = [...state.arrSinhVienSearch];
+        arrSinhVienSearchNew.push(sinhVien);
+        return {
+          ...state,
+          arrSinhVien: arrSinhVienUpdate,
+          arrSinhVienSearch: arrSinhVienSearchNew,
+        };
+      }
+
+      //else which is not match
+      else {
+        return {
+          ...state,
+          arrSinhVien: arrSinhVienUpdate,
+        };
+      }
     }
   }
 };

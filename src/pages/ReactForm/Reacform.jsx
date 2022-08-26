@@ -8,6 +8,18 @@ class Reacform extends Component {
   handleSubmit = (e) => {
     e.preventDefault();
     console.log(e);
+
+    //check if-else already added ot not
+    //if already added in arrSinhVien then alert
+
+    //else create action
+    const action = {
+      type: "ADD_SINHVIEN",
+      payload: {
+        sinhVien: { ...this.props.sinhVien },
+      },
+    };
+    this.props.dispatch(action);
   };
 
   handleChange = (e) => {
