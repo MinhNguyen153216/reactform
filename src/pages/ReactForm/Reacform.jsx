@@ -8,11 +8,14 @@ class Reacform extends Component {
   handleSubmit = (e) => {
     e.preventDefault();
     console.log(e);
+    let { arrSinhVien, sinhVien } = this.props;
 
     //check if-else already added ot not
     //if already added in arrSinhVien then alert
-
-    //else create action
+    if (arrSinhVien.findIndex((i) => i.id === sinhVien.id) !== -1) {
+      return alert("Sinh viên đã tồn tại");
+    }
+    //do create action when not
     const action = {
       type: "ADD_SINHVIEN",
       payload: {
@@ -99,6 +102,7 @@ class Reacform extends Component {
 const mapStateToProps = (state) => ({
   sinhVien: state.formReducer.sinhVien,
   errors: state.formReducer.errors,
+  arrSinhVien: state.formReducer.arrSinhVien,
 });
 
 export default connect(mapStateToProps)(Reacform);

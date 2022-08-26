@@ -2,6 +2,16 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 
 class ReactArrSV extends Component {
+  handleSearch = (e) => {
+    const action = {
+      type: "SEARCH_SINHVIEN",
+      payload: {
+        value: e.target.value,
+      },
+    };
+    this.props.dispatch(action);
+  };
+
   renderArrSV = (arrSinhVien) => {
     return arrSinhVien.map((sinhVien, index) => {
       return (
@@ -20,7 +30,7 @@ class ReactArrSV extends Component {
   };
 
   render() {
-    let { arrSinhVienSearch } = this.props;
+    let { arrSinhVienSearch, searchValue } = this.props;
     return (
       <div>
         <table className="table">
@@ -30,7 +40,15 @@ class ReactArrSV extends Component {
               <th scope="col">Họ Tên</th>
               <th scope="col">Số điện thoại</th>
               <th scope="col">Email</th>
-              <th></th>
+              <th scope="col">
+                Tìm kiếm{" "}
+                <input
+                  type="text"
+                  id="searchTenSV"
+                  onChange={this.handleSearch}
+                  value={searchValue}
+                />{" "}
+              </th>
             </tr>
           </thead>
           <tbody>{this.renderArrSV(arrSinhVienSearch)}</tbody>

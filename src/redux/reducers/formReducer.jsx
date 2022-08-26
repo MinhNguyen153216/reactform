@@ -78,5 +78,10 @@ export default (state = initialState, action) => {
         };
       }
     }
+    case "SEARCH_SINHVIEN": {
+      let { value } = action.payload;
+      state.searchValue = value;
+      return { ...state };
+    }
   }
 };
