@@ -25,14 +25,7 @@ const initialState = {
     phone: "",
     email: "",
   },
-  arrSinhVienSearch: [
-    {
-      id: "2",
-      name: "NguyenVanB",
-      phone: "0123456780",
-      email: "nguyenvanb@gmail.com",
-    },
-  ],
+  arrSinhVienSearch: [],
   searchValue: "",
 };
 
@@ -58,7 +51,7 @@ export default (state = initialState, action) => {
       //if new sinhVien is match with searchValue
       let searchValue = state.searchValue;
       if (
-        sinhVien.name.toLowerCase().include(searchValue.toLowerCase()) ||
+        sinhVien.name.toLowerCase().includes(searchValue) ||
         searchValue === ""
       ) {
         let arrSinhVienSearchNew = [...state.arrSinhVienSearch];
@@ -80,8 +73,16 @@ export default (state = initialState, action) => {
     }
     case "SEARCH_SINHVIEN": {
       let { value } = action.payload;
-      state.searchValue = value;
-      return { ...state };
+
+      let arrSinhVienSearch = [...state.arrSinhVien].filter((i) =>
+        i.name.toLowerCase().includes(value.toLowerCase())
+      );
+
+      return {
+        ...state,
+        arrSinhVienSearch: arrSinhVienSearch,
+        searchValue: value,
+      };
     }
   }
 };

@@ -12,8 +12,15 @@ class ReactArrSV extends Component {
     this.props.dispatch(action);
   };
 
-  renderArrSV = (arrSinhVien) => {
-    return arrSinhVien.map((sinhVien, index) => {
+  handleDelete = (sinhVien) => {
+    console.log(sinhVien);
+  };
+
+  renderArrSV = (arrSinhVienSearch) => {
+    if (this.props.searchValue === "") {
+      arrSinhVienSearch = [...this.props.arrSinhVien];
+    }
+    return arrSinhVienSearch.map((sinhVien, index) => {
       return (
         <tr className="align-middle" key={index}>
           <td>{sinhVien.id}</td>
@@ -22,7 +29,14 @@ class ReactArrSV extends Component {
           <td>{sinhVien.email}</td>
           <td>
             <button className="btn btn-primary m-1">Sửa</button>
-            <button className="btn btn-danger m-1">Xóa</button>
+            <button
+              className="btn btn-danger m-1"
+              onClick={() => {
+                this.handleDelete(sinhVien);
+              }}
+            >
+              Xóa
+            </button>
           </td>
         </tr>
       );
@@ -59,6 +73,7 @@ class ReactArrSV extends Component {
 }
 
 const mapStateToProps = (state) => ({
+  arrSinhVien: state.formReducer.arrSinhVien,
   arrSinhVienSearch: state.formReducer.arrSinhVienSearch,
   searchValue: state.formReducer.searchValue,
 });
