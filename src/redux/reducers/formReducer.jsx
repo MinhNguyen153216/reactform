@@ -71,6 +71,23 @@ export default (state = initialState, action) => {
         };
       }
     }
+    case "DELETE_SINHVIEN": {
+      let { value } = action.payload;
+      console.log(value.id);
+
+      let arrSinhVienUpdate = [...state.arrSinhVien].filter(
+        (i) => i.id !== value.id
+      );
+      let arrSinhVienSearchUpdate = [...state.arrSinhVienSearch].filter(
+        (i) => i.id !== value.id
+      );
+
+      return {
+        ...state,
+        arrSinhVien: arrSinhVienUpdate,
+        arrSinhVienSearch: arrSinhVienSearchUpdate,
+      };
+    }
     case "SEARCH_SINHVIEN": {
       let { value } = action.payload;
 

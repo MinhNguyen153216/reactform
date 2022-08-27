@@ -13,7 +13,13 @@ class ReactArrSV extends Component {
   };
 
   handleDelete = (sinhVien) => {
-    console.log(sinhVien);
+    const action = {
+      type: "DELETE_SINHVIEN",
+      payload: {
+        value: sinhVien,
+      },
+    };
+    this.props.dispatch(action);
   };
 
   renderArrSV = (arrSinhVienSearch) => {
