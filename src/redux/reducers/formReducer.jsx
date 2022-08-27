@@ -88,6 +88,23 @@ export default (state = initialState, action) => {
         arrSinhVienSearch: arrSinhVienSearchUpdate,
       };
     }
+    case "UPDATE_SINHVIEN": {
+      let { sinhVienUpdate } = { ...action.payload };
+      console.log(sinhVienUpdate);
+
+      //check if id is invalid or not
+      let arrSinhVienUpdate = [...state.arrSinhVien];
+      let indexUpdate = arrSinhVienUpdate.findIndex(
+        (i) => i.id === sinhVienUpdate.id
+      );
+      if (sinhVienUpdate.id === "" || indexUpdate === -1) {
+        alert("Không tồn tại Mã Sinh Viên cần cập nhật thông tin");
+        return state;
+      } else {
+        //cập nhật here
+        return state;
+      }
+    }
     case "SEARCH_SINHVIEN": {
       let { value } = action.payload;
 

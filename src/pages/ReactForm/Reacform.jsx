@@ -25,13 +25,21 @@ class Reacform extends Component {
     this.props.dispatch(action);
   };
 
-  handleChange = (e) => {
+  handleChangeInput = (e) => {
     const action = {
       type: "CHANGE_INPUT",
       payload: {
         id: e.target.id,
         value: e.target.value,
       },
+    };
+    this.props.dispatch(action);
+  };
+
+  handleUpdate = () => {
+    const action = {
+      type: "UPDATE_SINHVIEN",
+      payload: { sinhVienUpdate: { ...this.props.sinhVien } },
     };
     this.props.dispatch(action);
   };
@@ -48,7 +56,7 @@ class Reacform extends Component {
                 type="text"
                 id="id"
                 value={this.props.sinhVien.id}
-                onChange={this.handleChange}
+                onChange={this.handleChangeInput}
               />
               <span className="text-danger">{this.props.errors.id}</span>
               <p className="m-0">Họ tên</p>
@@ -57,7 +65,7 @@ class Reacform extends Component {
                 type="text"
                 id="name"
                 value={this.props.sinhVien.name}
-                onChange={this.handleChange}
+                onChange={this.handleChangeInput}
               />
               <span className="text-danger">{this.props.errors.id}</span>
             </div>
@@ -69,7 +77,7 @@ class Reacform extends Component {
                 type="text"
                 id="phone"
                 value={this.props.sinhVien.phone}
-                onChange={this.handleChange}
+                onChange={this.handleChangeInput}
               />
               <span className="text-danger">{this.props.errors.id}</span>
               <p className="m-0">Email</p>
@@ -78,7 +86,7 @@ class Reacform extends Component {
                 type="text"
                 id="email"
                 value={this.props.sinhVien.email}
-                onChange={this.handleChange}
+                onChange={this.handleChangeInput}
               />
               <span className="text-danger">{this.props.errors.id}</span>
             </div>
@@ -90,6 +98,13 @@ class Reacform extends Component {
             onClick={this.handleSubmit}
           >
             Thêm sinh viên
+          </button>
+          <button
+            className="btn btn-warning mt-2 mb-2 ms-2"
+            type="button"
+            onClick={this.handleUpdate}
+          >
+            Cập nhật sinh viên
           </button>
         </form>
 
