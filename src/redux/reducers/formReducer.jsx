@@ -88,9 +88,15 @@ export default (state = initialState, action) => {
         arrSinhVienSearch: arrSinhVienSearchUpdate,
       };
     }
+    case "LOAD_UPDATE_SINHVIEN": {
+      let { value } = action.payload;
+
+      let sinhVienLoad = { ...state.arrSinhVien.find((i) => i.id === value) };
+
+      return { ...state, sinhVien: sinhVienLoad };
+    }
     case "UPDATE_SINHVIEN": {
-      let { sinhVienUpdate } = { ...action.payload };
-      console.log(sinhVienUpdate);
+      let { sinhVienUpdate } = action.payload;
 
       //check if id is invalid or not
       let arrSinhVienUpdate = [...state.arrSinhVien];
@@ -101,8 +107,21 @@ export default (state = initialState, action) => {
         alert("Không tồn tại Mã Sinh Viên cần cập nhật thông tin");
         return state;
       } else {
-        //cập nhật here
-        return state;
+        let arrSinhVienSearchUpdate = [...state.arrSinhVienSearch];
+
+        arrSinhVienUpdate[indexUpdate] = sinhVienUpdate;
+        let indexSearchUpdate = arrSinhVienSearchUpdate.findIndex(
+          (i) => i.id === sinhVienUpdate.id
+        );
+        if (indexSearchUpdate !== -1) {
+          arrSinhVienSearchUpdate[indexSearchUpdate] = sinhVienUpdate;
+        }
+
+        return {
+          ...state,
+          arrSinhVien: arrSinhVienUpdate,
+          arrSinhVienSearch: arrSinhVienSearchUpdate,
+        };
       }
     }
     case "SEARCH_SINHVIEN": {

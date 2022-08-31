@@ -22,6 +22,16 @@ class ReactArrSV extends Component {
     this.props.dispatch(action);
   };
 
+  handleUpdate = (id) => {
+    const action = {
+      type: "LOAD_UPDATE_SINHVIEN",
+      payload: {
+        value: id,
+      },
+    };
+    this.props.dispatch(action);
+  };
+
   renderArrSV = (arrSinhVienSearch) => {
     if (this.props.searchValue === "") {
       arrSinhVienSearch = [...this.props.arrSinhVien];
@@ -34,7 +44,14 @@ class ReactArrSV extends Component {
           <td>{sinhVien.phone}</td>
           <td>{sinhVien.email}</td>
           <td>
-            <button className="btn btn-primary m-1">Sửa</button>
+            <button
+              className="btn btn-primary m-1"
+              onClick={() => {
+                this.handleUpdate(sinhVien.id);
+              }}
+            >
+              Sửa
+            </button>
             <button
               className="btn btn-danger m-1"
               onClick={() => {
