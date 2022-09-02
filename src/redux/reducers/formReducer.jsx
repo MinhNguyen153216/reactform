@@ -20,10 +20,10 @@ const initialState = {
     email: "",
   },
   errors: {
-    id: "",
-    name: "",
-    phone: "",
-    email: "",
+    id: " ",
+    name: " ",
+    phone: " ",
+    email: " ",
   },
   arrSinhVienSearch: [],
   searchValue: "",
@@ -40,6 +40,16 @@ export default (state = initialState, action) => {
       sinhVienUpdate[id] = value;
 
       return { ...state, sinhVien: sinhVienUpdate };
+    }
+    case "VALIDATION": {
+      let { input, value } = action.payload;
+
+      let newErrors = { ...state.errors };
+      newErrors[input] = value;
+
+      console.log(newErrors);
+
+      return { ...state, errors: newErrors };
     }
     case "ADD_SINHVIEN": {
       let { sinhVien } = action.payload;
